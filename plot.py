@@ -54,12 +54,12 @@ plt.legend()
 # plt.plot(x, y)
   
 # naming the x axis
-plt.xlabel('x - axis')
+plt.xlabel('k')
 # naming the y axis
-plt.ylabel('y - axis')
+plt.ylabel('P(k)')
   
 # giving a title to my graph
-plt.title('My first graph!')
+plt.title('Power Law Degree Distribution!')
   
 # function to show the plot
 plt.show()
