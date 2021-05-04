@@ -167,7 +167,7 @@ void solve(){
     special = vector<bool>(n, false);
     circles = vector<vector<ll>>(n); 
     visited = vector<bool> (n, false);
-    double prob = .04;
+    double prob = .03;
     for(int i = 0; i < n; i++){
         if(genRandom() <= prob){
             special[i] = true;

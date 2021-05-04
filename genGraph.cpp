@@ -78,7 +78,7 @@ void solve(){
     srand (time(NULL));
     n = 1000000;
     g = vector<vector<ll>>(n); 
-    divConquer(0, n-1);
+    divConquer(0, n - 1);
     printDegDistribution();
 }
 
