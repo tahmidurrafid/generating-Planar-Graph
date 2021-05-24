@@ -76,6 +76,18 @@ void printCircle(ll l, ll r){
     cout << "\n";
 }
 
+int getMostProbable(vector<ll>& a){
+    ll total;
+    for(int i = 1; i < a.size(); i++) a[i] += a[i-1];
+    total = a.back();
+    double val = genRandom();
+    for(int i = 0; i < a.size(); i++){
+        if(total * val <= a[i])
+            return i;
+    }
+    return a.size() - 1;
+}
+
 void divConquer(int l, int r){
     if(r - l == 1){
         addEdge(l, r);
@@ -124,10 +136,36 @@ void divConquer(int l, int r){
     ll ts = circles[l][0], tp = l;
 
     sp = -1;
+    // for(int i = l; i <= r; i++){
+    //     bool here = false;
+    //     if(special[i] && circles[i].size()){
+    //         sp = i;
+    //         break;
+    //     }
+    // }
+    bool red =false;
     for(int i = l; i <= r; i++){
-        if(special[i] && circles[i].size()){
-            sp = i;
-            break;
+        if(special[i]){
+            red = true;
+        }
+    }
+    if(red){
+        vector< P > poss;
+        for(int i = l; i <= r; i++){
+            if(circles[i].size()){
+                poss.push_back({i, g[i].size()});
+            }
+        }
+        if(poss.size() >=3 ){
+            // sp = poss[rand()%poss.size()].first;
+            sort(poss.begin(), poss.end(), [](const P &l, const P& r){
+                return l.second > r.second;
+            });
+            vector<ll> a;
+            for(int i = 0; i < poss.size(); i++) a.push_back(poss[i].second);
+            // cout << "start\n";
+            sp = poss[getMostProbable(a)].first;
+            // cout << sp << " - " << poss.size() << " , " << circles[sp].size() << "\n";
         }
     }
 
@@ -167,7 +205,7 @@ void solve(){
     special = vector<bool>(n, false);
     circles = vector<vector<ll>>(n); 
     visited = vector<bool> (n, false);
-    double prob = .05;
+    double prob = .2;
     for(int i = 0; i < n; i++){
         if(genRandom() <= prob){
             special[i] = true;

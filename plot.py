@@ -16,7 +16,7 @@ f = open("out.dat", "r")
 n = int(f.readline())
 print(n)
 
-for i in range(1, 100):
+for i in range(1, 1000):
     val = int(f.readline())
     if val > 0:
         xori.append(i)
