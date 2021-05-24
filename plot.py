@@ -5,6 +5,9 @@ import math
 x = []
 # corresponding y axis values
 y = []
+
+xori = []
+yori = []
   
 x2 = []
 y2 = []
@@ -13,14 +16,19 @@ f = open("out.dat", "r")
 n = int(f.readline())
 print(n)
 
-for i in range(1, 1000):
+for i in range(1, 100):
     val = int(f.readline())
     if val > 0:
+        xori.append(i)
+        yori.append(val)
         x.append(math.log(i))
         y.append(math.log(val))
 
 plt.plot(x, y, color='green', linewidth = 1,
          marker='o', markerfacecolor='blue', markersize=5)
+
+# plt.plot(xori, yori, color='red', linewidth = 1,
+#          marker='o', markerfacecolor='blue', markersize=5)
 
 a0 = 0
 a1 = 0

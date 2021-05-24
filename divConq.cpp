@@ -167,14 +167,16 @@ void solve(){
     special = vector<bool>(n, false);
     circles = vector<vector<ll>>(n); 
     visited = vector<bool> (n, false);
-    double prob = .03;
+    double prob = .05;
     for(int i = 0; i < n; i++){
         if(genRandom() <= prob){
             special[i] = true;
             // cout << i << " - ";
         }
     }
-    // cout << "\n";
+    // for(int i = 0; i < n; i+= 18){
+    //     special[i] = true;
+    // }
 
     divConquer(0, n-1);
     printDegDistribution();
